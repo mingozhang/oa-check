@@ -47,7 +47,7 @@ public class OaCheckService {
     };
 
 
-    @Scheduled(cron = "0 10 8,18 * * ?")
+    @Scheduled(cron = "0 20 8,18 ? * MON-FRI")
     public void executeTask() throws IOException {
         initUserInfo();
         int poolSize = personList.size() > 16 ? 16 : personList.size();

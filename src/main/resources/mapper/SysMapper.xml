@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mingo.oacheck.dao.SysDao">
+
+    <select id="selectList" resultType="com.mingo.oacheck.domain.SysInfo">
+        select * from t_sys
+    </select>
+
+
+    <select id="select" resultType="com.mingo.oacheck.domain.SysInfo">
+        select * from t_sys
+        where bsm=#{bsm,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByKey" resultType="com.mingo.oacheck.domain.SysInfo">
+        select * from t_sys
+        where key=#{key,jdbcType=VARCHAR}
+    </select>
+
+
+    <insert id="insert" parameterType="com.mingo.oacheck.domain.SysInfo">
+        insert into t_sys
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="key!=null">
+                key,
+            </if>
+            <if test="value!=null">
+                value,
+            </if>
+            <if test="bz!=null">
+                bz,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="username!=null">
+                #{username,dbcType=VARCHAR},
+            </if>
+            <if test="value!=null">
+                #{value,dbcType=VARCHAR},
+            </if>
+            <if test="bz!=null">
+                #{bz,dbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="update" parameterType="com.mingo.oacheck.domain.SysInfo">
+        update t_sys
+        <set>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="value != null">
+                value = #{value,jdbcType=VARCHAR},
+            </if>
+            <if test="bz != null">
+                bz = #{bz,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where bsm=#{bsm,jdbcType=INTEGER}
+    </update>
+
+
+    <delete id="delete" >
+        delete from t_sys
+        where bsm = #{bsm,jdbcType=INTEGER}
+    </delete>
+
+
+</mapper>

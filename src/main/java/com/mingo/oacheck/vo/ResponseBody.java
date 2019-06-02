@@ -1,4 +1,4 @@
-package com.mingo.oacheck.domain;
+package com.mingo.oacheck.vo;
 
 import java.io.Serializable;
 

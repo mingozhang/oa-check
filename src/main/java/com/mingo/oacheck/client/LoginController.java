@@ -1,10 +1,9 @@
 package com.mingo.oacheck.client;
 
 import com.mingo.oacheck.app.OaCheckService;
-import com.mingo.oacheck.domain.ResponseBody;
+import com.mingo.oacheck.vo.ResponseBody;
 import com.mingo.oacheck.domain.UserEntity;
 import com.mingo.oacheck.utils.FileUtils;
-import javafx.scene.chart.ValueAxis;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

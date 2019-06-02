@@ -11,7 +11,28 @@ server:
     buffer-size: 1024
     # 是否分配的直接内存
     direct-buffers: true
-
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/oacheck
+    username: root
+    password: 123456
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 40
+      max-wait: 60
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      validation-query: SELECT 1 FROM DUAL
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      # oracle为true,mysql建议false   #PSCache 相关
+      pool-prepared-statements: false
+      # oracle可设置100,mysql建议-1 #PSCache 相关
+      max-pool-prepared-statement-per-connection-size: -1
+      use-global-data-source-stat: true
   redis:
     host: 127.0.0.1
     port: 6379
@@ -21,3 +42,9 @@ server:
       max-idle: 8
       min-idle: 0
     timeout: 0
+
+
+mybatis:
+  type-aliases-package: com.mingo.oacheck.dao
+  mapper-locations:
+    - classpath*:mapper/*.xml

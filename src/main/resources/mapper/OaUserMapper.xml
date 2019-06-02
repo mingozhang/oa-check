@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mingo.oacheck.dao.OaUserDao">
+
+    <select id="selectList" resultType="com.mingo.oacheck.domain.OaUserInfo">
+        select * from t_oa_user
+    </select>
+
+
+    <select id="select" resultType="com.mingo.oacheck.domain.OaUserInfo">
+        select * from t_oa_user
+        where bsm=#{bsm,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByUserBsm" resultType="com.mingo.oacheck.domain.OaUserInfo">
+        select * from t_oa_user
+        where userBsm=#{userBsm,jdbcType=INTEGER}
+    </select>
+
+
+    <insert id="insert" parameterType="com.mingo.oacheck.domain.OaUserInfo">
+        insert into t_oa_user
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="userBsm!=null">
+                userBsm,
+            </if>
+            <if test="oaUsername!=null">
+                oaUsername,
+            </if>
+            <if test="oaPassword!=null">
+                oaPassword,
+            </if>
+        </trim>
+        <trim prefix="values(" suffix=")" suffixOverrides=",">
+            <if test="userBsm!=null">
+                #{userBsm,dbcType=INTEGER},
+            </if>
+            <if test="oaUsername!=null">
+                #{oaUsername,dbcType=VARCHAR},
+            </if>
+            <if test="oaPassword!=null">
+                #{oaPassword,dbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="update" parameterType="com.mingo.oacheck.domain.OaUserInfo">
+        update t_oa_user
+        <set>
+            <if test="userBsm != null">
+                userBsm = #{username,jdbcType=INTEGER},
+            </if>
+            <if test="oaUsername != null">
+                oaUsername = #{oaUsername,jdbcType=VARCHAR},
+            </if>
+            <if test="oaPassword != null">
+                oaPassword = #{oaPassword,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where bsm=#{bsm,jdbcType=INTEGER}
+    </update>
+
+
+    <delete id="delete" >
+        delete from t_oa_user
+        where bsm = #{bsm,jdbcType=INTEGER}
+    </delete>
+
+
+</mapper>

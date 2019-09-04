@@ -27,8 +27,8 @@ import java.util.concurrent.*;
 public class OaCheckService {
 
     private final String url = "http://cnc.gisquest.com:89/client.do";
-        private final String filepath = "/usr/local/userdata/user.txt";
-//    private final String filepath = "D://123.txt";
+        private final String filepath = "/usr/local/userdata/user.txt";     //linux下用户文件信息
+//    private final String filepath = "D://123.txt";        //windows下用户文件信息
     private RestTemplate restTemplate = new RestTemplate();
     private List<UserEntity> personList = new ArrayList<>();
 
@@ -46,8 +46,8 @@ public class OaCheckService {
             "浙江省杭州市西湖区华星路97-2号靠近创业大厦(华星路)"
     };
 
-
-//    @Scheduled(cron = "0 20 8,18 ? * MON-FRI")
+    //工作日任务
+    @Scheduled(cron = "0 20 8,18 ? * MON-FRI")
     public void executeTask() throws IOException {
         initUserInfo();
         int poolSize = personList.size() > 16 ? 16 : personList.size();
